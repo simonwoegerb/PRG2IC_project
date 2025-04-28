@@ -3,20 +3,9 @@
 #include "string"
 #include "testing/tests.hpp"
 #include <cctype>
-#include <cstddef>
-#include <exception>
 #include <stdexcept>
 #include <string>
 #include <sys/types.h>
-#include <type_traits>
-// Helper function to allow bothj lower and upper case "q" to quit the app
-std::string toLowerCase(const std::string &input) {
-  std::string result = input;
-  for (char &c : result) {
-    c = std::tolower(static_cast<unsigned char>(c));
-  }
-  return result;
-}
 
 bool is_alphanumeric(const std::string &input) {
   for (char c : input) {
@@ -44,10 +33,9 @@ int main() {
   while (true) {
 
     std::string stringbaseIn, stringbaseOut = "";
-    std::cout << "Please input the base of your input number" << std::endl;
+    std::cout << "Please input the base of your input number ";
     std::cin >> stringbaseIn;
-    std::cout << "Please input the base of your desired output number"
-              << std::endl;
+    std::cout << "Please input the base of your desired output number ";
     std::cin >> stringbaseOut;
     int baseIn, baseOut = 0;
     if (is_numeric(stringbaseIn) && is_numeric(stringbaseOut)) {
@@ -63,7 +51,7 @@ int main() {
     }
 
     std::cout << "Please input your number that you wish to convert from base "
-              << stringbaseIn << " to " << stringbaseOut << ". No spaces are supported (cut off)." << std::endl;
+              << stringbaseIn << " to " << stringbaseOut << ". No spaces are supported (cut off). ";
     std::string input_number = "";
     std::cin >> input_number;
     std::string output = "";
