@@ -38,8 +38,10 @@ int main() {
     std::string stringbaseIn, stringbaseOut = "";
     std::cout << "Please input the base of your input number ";
     std::cin >> stringbaseIn;
+    if (stringbaseIn == "q" || stringbaseIn=="Q") break;
     std::cout << "Please input the base of your desired output number ";
     std::cin >> stringbaseOut;
+    if (stringbaseOut == "q" || stringbaseOut=="Q") break;
     int baseIn, baseOut = 0;
     // check if base inputs are numerical. if not, ask again
     if (is_numeric(stringbaseIn) && is_numeric(stringbaseOut)) {
@@ -59,6 +61,7 @@ int main() {
               << ". No spaces are supported (cut off). ";
     std::string input_string = "";
     std::cin >> input_string;
+  
     std::string output = "";
     if (is_alphanumeric(input_string)) {
       try {

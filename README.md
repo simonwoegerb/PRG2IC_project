@@ -10,7 +10,7 @@ As it stands it gracefully handles wrong base inputs (asks again after an error 
 ## Functionality 
 This application contains a function for Numerical Conversion from Base2-35 to Decimal as well as Decimal to Base2-35. Both have also been combined in Base2-35 to Base2-35 for developer convenience. All can be found in `src/conversion.cpp`
 
-The entire application runs in an infinte loop, always asking for the next set of input (Base to convert from, Base to convert to, Number to be converted). It can be quit by Ctrl+C.  
+The entire application runs in an infinte loop, always asking for the next set of input (Base to convert from, Base to convert to, Number to be converted). It can be quit by `Ctrl+C` or by inputting `q` or `Q` as any of the bases.  
 Be aware of integer overflow.
 ## Building
 The application has an attached make file (runs on OpenSuse Tumbleweed). If built with `make debug`/`make debug_run`, the tests are automatically run on startup Otherwise they must be uncommented in the main file.
