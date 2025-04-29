@@ -11,7 +11,7 @@ bool is_alphanumeric(const std::string &input) {
   for (char c : input) {
     if (!std::isdigit(static_cast<unsigned char>(c)) &&
         !std::isalpha(static_cast<unsigned char>(c)) &&
-        c == ' ') { // apparently space is alpha numerical. who knew
+        !(c == '-')) { // also allow negative sign
       return false;
     }
   }
@@ -19,7 +19,7 @@ bool is_alphanumeric(const std::string &input) {
 }
 bool is_numeric(const std::string &input) {
   for (char c : input) {
-    if (!std::isdigit(static_cast<unsigned char>(c))) {
+    if (!std::isdigit(static_cast<unsigned char>(c)) && !(c == '-')) {
       return false;
     }
   }
@@ -51,7 +51,8 @@ int main() {
     }
 
     std::cout << "Please input your number that you wish to convert from base "
-              << stringbaseIn << " to " << stringbaseOut << ". No spaces are supported (cut off). ";
+              << stringbaseIn << " to " << stringbaseOut
+              << ". No spaces are supported (cut off). ";
     std::string input_number = "";
     std::cin >> input_number;
     std::string output = "";
@@ -59,7 +60,7 @@ int main() {
       try {
         output =
             Conversion::convertFromBaseToBase(input_number, baseIn, baseOut);
-        std::cout << "Your calculated number is "<<  output << std::endl;
+        std::cout << "Your calculated number is " << output << std::endl;
       } catch (std::invalid_argument exception) {
         std::cout << "Your inputs are flawed. " << exception.what()
                   << std::endl;
@@ -70,6 +71,4 @@ int main() {
                 << std::endl;
     }
   }
-  // std::cout << Conversion::convertFromBase("110010101010", 2) << std::endl;
-  // std::cout << Conversion::convertFromBaseToBase("FF", 16, 8);
 }

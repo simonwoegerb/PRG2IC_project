@@ -1,6 +1,7 @@
 #include "conversion.hpp"
 #include <cctype>
 #include <stdexcept>
+#include <type_traits>
 #include "algorithm"
 //convert 0-9, a-z to number between 0-36
 int charToNumber(char c) {
@@ -11,14 +12,17 @@ int charToNumber(char c) {
     //-A, as alphabet is consecutive and substracting A makes it start from 0, +10 because A represents 10, ff.
     //is in alphabet
         return std::toupper(c) - 'A' + 10; //supports upper and lowercase, as the same thing    
-    } 
+    } else { 
+        // something went wrong. should never be called.
      throw std::invalid_argument("Invalid character.");
-
+    }
 }
 namespace Conversion {
 
     std::string convertToBase(int number, int targetBase) {
         if (targetBase < 2 || targetBase > 36) {
+            // bases input are either unary (useless conversion) or beyond the accepted characters 
+            // (uppercase and lowercase is not differentiated by this program)
             throw std::invalid_argument("Invalid targetBase as input, needs to be between 2 and 36");
         } 
         if (number == 0) {
@@ -49,14 +53,19 @@ namespace Conversion {
             throw std::invalid_argument("Invalid base as input, needs to be between 2 and 36");
         } 
         int result = 0;
+        bool negative = false;
         for (char c : data) {
+            if (c == '-') {
+                negative = true;
+                continue;
+            }
             int digit = charToNumber(c);
             if (digit >= base) {
                 throw std::invalid_argument("Digit too big for given base.");
             }
             result = result*base+digit;
         }
-        return result;
+        return negative? -result : result;
     }
     // intentionally not abstracting away the exceptions
        std::string convertFromBaseToBase(std::string data, int dataBase, int targetBase) {

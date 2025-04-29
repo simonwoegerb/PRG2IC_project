@@ -1,6 +1,5 @@
 
 #include "tests.hpp"
-#include <cstddef>
 #include <exception>
 #include <string>
 #include <vector>
@@ -15,7 +14,8 @@ std::tuple<int,int> TestsConversionNumericalBaseToBase() {
             {"73", 36,10,"255"},
             {"255",10,36,"73"},
             {"0",2,36,"0"},
-            {"1AF", 16, 2, "110101111"}
+            {"1AF", 16, 2, "110101111"},
+            {"-1010101", 2,10,"-85"}
             };
         int passed = 0;
         for (const auto& [data,from,to,expected]: tests) {
@@ -34,19 +34,11 @@ std::tuple<int,int> TestsConversionNumericalBaseToBase() {
         return {passed, tests.size()};
         }
 // Just a helper function to add up the test results of different test sets/functions
-std::tuple<int, int> sumTuples(const std::vector<std::tuple<int, int>>& data) {
-    int sum_a = 0, sum_b = 0;
-    for (const auto& [a, b] : data) {
-        sum_a += a;
-        sum_b += b;
-    }
-    return {sum_a, sum_b};
-}
 
 namespace Tests {
     //Result tuple: {testsPassed,numberOfTestsOverall}
     std::tuple<int,int> runTests() {
     auto results1 = TestsConversionNumericalBaseToBase();
-    return sumTuples({results1});      // List of tests to be run, all should pas
+    return results1;      // List of tests to be run, all should pas
     }
 }
