@@ -17,14 +17,13 @@ SRC := $(wildcard $(SRC_DIR)/**/*.cpp $(SRC_DIR)/*.cpp)
 OBJ := $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRC))
 
 # Output executable
-TARGET := lecture1
+TARGET := numericalconverter 
 
 # Default rule
 all: $(TARGET)
 
 # Ensure obj directory and subdirectories exist
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
-	# Create the directory for the object file if it doesn't exist
 	mkdir -p $(dir $@)
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
