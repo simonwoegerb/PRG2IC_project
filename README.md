@@ -1,4 +1,4 @@
-# Numerical Converter
+#Numerical Converter
 ## Initial project suggestion
 While the initial idea for this project was: 
 > A program with two modes: First to convert any floating point number in base 0-36 to any other base. (0-9+A-z =36 characters). Results are output to terminal as well as saved to a history file for future reference. Secondly a base_x to string decoder and encoder for any base up to base64. Mode is selectable upon startup and whenever a request is finished (running continuously in a loop). 

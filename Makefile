@@ -1,17 +1,17 @@
-# Compiler
+#Compiler
 CXX := clang++
 
-# Directories
+#Directories
 SRC_DIR := src
 OBJ_DIR := obj
 
-# Compiler flags
+#Compiler flags
 CXXFLAGS := -Wall -Wextra -std=c++17 -O2 -I${SRC_DIR}/
 
-# Debug flags (use `make debug` to enable them)
+#Debug flags(use `make debug` to enable them)
 DEBUGFLAGS := -g -O0 -DDEBUG
 
-# Source files (automatically find all .cpp files in src/)
+#Source files(automatically find all.cpp files in src /)
 SRC := $(wildcard $(SRC_DIR)/**/*.cpp $(SRC_DIR)/*.cpp)
 # Object files (store .o files in obj/)
 OBJ := $(patsubst $(SRC_DIR)/%.cpp, $(OBJ_DIR)/%.o, $(SRC))
